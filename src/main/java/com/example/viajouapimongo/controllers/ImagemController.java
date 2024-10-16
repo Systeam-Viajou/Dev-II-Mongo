@@ -3,6 +3,7 @@ package com.example.viajouapimongo.controllers;
 import com.example.viajouapimongo.models.Imagem;
 import com.example.viajouapimongo.repositorys.ImagemRepository;
 import com.example.viajouapimongo.services.ImagemService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/viajou/mongo/imagens")
