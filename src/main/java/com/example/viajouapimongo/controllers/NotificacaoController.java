@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/viajou/mongo/notificacoes")
+@RequestMapping("/viajouapi/mongo/notificacoes")
 public class NotificacaoController {
     @Autowired
     private NotificacaoService notificacaoService;

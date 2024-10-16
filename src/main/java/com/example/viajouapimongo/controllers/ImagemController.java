@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/viajou/mongo/imagens")
+@RequestMapping("/viajouapi/mongo/imagens")
 public class ImagemController {
     @Autowired
     private ImagemService imagemService;
