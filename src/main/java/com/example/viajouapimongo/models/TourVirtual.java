@@ -1,18 +1,36 @@
 package com.example.viajouapimongo.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@Schema(description = "Modelo que representa um Tour Virtual")
 @Document(collection = "tour-virtual")
 public class TourVirtual {
+
+    @Schema(description = "Título do tour virtual", example = "Entrada")
     private String titulo;
+
+    @Schema(description = "ID da atração associada ao tour", example = "123")
     private int idAtracao;
+
+    @Schema(description = "Descrição do tour virtual", example = "Evento cultural com apresentações únicas...")
     private String descricao;
+
+    @Schema(description = "Média de classificação do tour", example = "4.5")
     private double mediaClassificacao;
+
+    @Schema(description = "ID da figurinha associada ao tour", example = "456")
     private int idFigurinha;
+
+    @Schema(description = "Preço do tour virtual", example = "29.99")
     private double preco;
+
+    @Schema(description = "Tamanho da quantidade de conteudos que o tour possui", example = "3")
     private int tamanho;
+
+    @Schema(description = "Conteúdo do tour virtual", example = "Conteúdo de imagens e descrições")
     private List<Conteudo> conteudo;
 
     public String getTitulo() {
@@ -79,4 +97,3 @@ public class TourVirtual {
         this.conteudo = conteudo;
     }
 }
-
