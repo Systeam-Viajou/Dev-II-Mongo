@@ -62,4 +62,22 @@ public class NotificacaoController {
             return ResponseEntity.ok("Notificação inserida com sucesso");
         }
     }
+
+    @Operation(summary = "Gerar notificação aleatória")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Notificação aleatória gerada com sucesso",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Notificacao.class)) }),
+            @ApiResponse(responseCode = "500", description = "Erro no servidor")
+    })
+    @GetMapping("/aleatoria")
+    public ResponseEntity<Notificacao> gerarNotificacaoAleatoria() {
+        try {
+            Notificacao notificacaoAleatoria = notificacaoService.gerarNotificacaoAleatoria();
+            return ResponseEntity.ok(notificacaoAleatoria);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }
