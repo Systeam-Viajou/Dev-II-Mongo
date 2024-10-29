@@ -9,6 +9,9 @@ import java.util.List;
 @Document(collection = "tour-virtual")
 public class TourVirtual {
 
+    @Schema(description = "ID do tour virtual", example = "2")
+    private int id;
+
     @Schema(description = "ID da atração associada ao tour", example = "123")
     private int idAtracao;
 
@@ -29,6 +32,14 @@ public class TourVirtual {
 
     @Schema(description = "Conteúdo do tour virtual", example = "Conteúdo de imagens e descrições")
     private List<Conteudo> conteudo;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getIdAtracao() {
         return idAtracao;

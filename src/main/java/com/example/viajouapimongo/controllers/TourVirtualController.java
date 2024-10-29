@@ -38,7 +38,7 @@ public class TourVirtualController {
     @GetMapping("/buscar")
     public ResponseEntity<List<TourVirtual>> buscarTourVirtual() {
         List<TourVirtual> tours = tourVirtualService.buscarTouresVirtiais();
-        return ResponseEntity.ok(tours);  
+        return ResponseEntity.ok(tours);
     }
 
 
