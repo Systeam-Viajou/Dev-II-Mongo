@@ -3,7 +3,6 @@ package com.example.viajouapimongo.controllers;
 import com.example.viajouapimongo.models.TourVirtual;
 import com.example.viajouapimongo.services.TourVirtualService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -41,7 +40,6 @@ public class TourVirtualController {
         return ResponseEntity.ok(tours);
     }
 
-
     @Operation(summary = "Inserir um novo tour virtual")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Tour virtual inserido com sucesso"),
@@ -69,11 +67,13 @@ public class TourVirtualController {
         }
     }
 
+    // Tratamento de exceção para NoSuchElementException
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElement(NoSuchElementException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tour virtual não encontrado: " + ex.getMessage());
     }
 
+    // Tratamento de exceção para RuntimeException
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno: " + ex.getMessage());

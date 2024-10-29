@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ImagemService {
+
     @Autowired
     private ImagemRepository imagemRepository;
 
@@ -19,19 +19,22 @@ public class ImagemService {
         return imagemRepository.findAll();
     }
 
-    // Buscando a imagem pelo id
-    public Imagem buscarImagemPorID(String id){
+    // Buscando a imagem pelo ID
+    public Imagem buscarImagemPorID(String id) {
         return imagemRepository.findById(id).orElseThrow(() ->
-                new RuntimeException("Imagem não encontrada"));
+                new RuntimeException("Imagem não encontrada com o ID: " + id));
     }
 
-    // Buscando a imagem pelo id da atração
+    // Buscando a imagem pelo ID da atração
     public Optional<Imagem> getImagemByIdAtracao(Long idAtracao) {
         return imagemRepository.findByIdAtracao(idAtracao);
     }
 
     // Salvando e atualizando a imagem
     public Imagem salvarImagem(Imagem imagem) {
+        if (imagem == null) {
+            throw new IllegalArgumentException("O objeto Imagem não pode ser nulo");
+        }
         return imagemRepository.save(imagem);
     }
 }

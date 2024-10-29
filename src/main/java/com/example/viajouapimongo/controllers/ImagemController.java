@@ -1,7 +1,6 @@
 package com.example.viajouapimongo.controllers;
 
 import com.example.viajouapimongo.models.Imagem;
-import com.example.viajouapimongo.models.Notificacao;
 import com.example.viajouapimongo.services.ImagemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,8 +35,9 @@ public class ImagemController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @GetMapping("/buscar")
-    public List<Imagem> buscarImagens() {
-        return imagemService.buscarImagens();
+    public ResponseEntity<List<Imagem>> buscarImagens() {
+        List<Imagem> imagens = imagemService.buscarImagens();
+        return ResponseEntity.ok(imagens);
     }
 
     @Operation(summary = "Buscar imagem por ID da categoria")
@@ -53,13 +53,13 @@ public class ImagemController {
             @Parameter(description = "ID da categoria de atração") @PathVariable Long idAtracao) {
         return imagemService.getImagemByIdAtracao(idAtracao)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 
     @Operation(summary = "Inserir nova imagem")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Imagem inserida com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro na validação da magem"),
+            @ApiResponse(responseCode = "400", description = "Erro na validação da imagem"),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @PostMapping("/inserir")
@@ -68,14 +68,18 @@ public class ImagemController {
 
         if (resultado.hasErrors()) {
             Map<String, String> erros = new HashMap<>();
-
             for (FieldError erro : resultado.getFieldErrors()) {
                 erros.put(erro.getField(), erro.getDefaultMessage());
             }
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erros);
         } else {
-            imagemService.salvarImagem(imagem);
-            return ResponseEntity.ok("Imagem inserida com sucesso");
+            try {
+                imagemService.salvarImagem(imagem);
+                return ResponseEntity.ok("Imagem inserida com sucesso");
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Erro ao salvar imagem: " + e.getMessage());
+            }
         }
     }
 }
