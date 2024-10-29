@@ -20,7 +20,7 @@ public class TourVirtualService {
     // Buscando o tour virtual pelo id
     public TourVirtual buscarToureVirtialPorID(String id) {
         return tourVirtualRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tour virtual não encontrado com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Tour virtual não encontrado"));
     }
 
     // Salvando e atualizando o tour virtual
