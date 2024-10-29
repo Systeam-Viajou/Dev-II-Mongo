@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Schema(description = "Modelo que representa uma Imagem")
+@Schema(description = "Modelo que representa uma imagem")
 @Document(collection = "imagem")
 public class Imagem {
 

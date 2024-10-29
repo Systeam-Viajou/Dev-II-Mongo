@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
-@Schema(description = "Modelo que representa um Tour Virtual")
+@Schema(description = "Modelo que representa um tour virtual")
 @Document(collection = "tour-virtual")
 public class TourVirtual {
 

@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Schema(description = "Modelo que representa uma Notificação")
+@Schema(description = "Modelo que representa uma notificação")
 @Document(collection = "notificacoes")
 public class Notificacao {
 
