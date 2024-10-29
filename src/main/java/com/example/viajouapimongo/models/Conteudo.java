@@ -5,6 +5,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "Modelo que representa o conteúdo de um tour virtual")
 public class Conteudo {
 
+    @Schema(description = "Título de cada conteúdo", example = "Entrada")
+    private String titulo;
+
     @Schema(description = "Posição do conteúdo na sequência", example = "1")
     private int posicao;
 
@@ -13,6 +16,14 @@ public class Conteudo {
 
     @Schema(description = "URL da imagem associada ao conteúdo", example = "http://example.com/image.jpg")
     private String urlImagem;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
     public int getPosicao() {
         return posicao;

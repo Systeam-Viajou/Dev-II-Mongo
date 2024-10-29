@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/viajouapi/mongo/touresvirtuais")
@@ -35,9 +36,11 @@ public class TourVirtualController {
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
     @GetMapping("/buscar")
-    public List<TourVirtual> buscarTourVirtual() {
-        return tourVirtualService.buscarTouresVirtiais();
+    public ResponseEntity<List<TourVirtual>> buscarTourVirtual() {
+        List<TourVirtual> tours = tourVirtualService.buscarTouresVirtiais();
+        return ResponseEntity.ok(tours);  
     }
+
 
     @Operation(summary = "Inserir um novo tour virtual")
     @ApiResponses(value = {
@@ -46,20 +49,33 @@ public class TourVirtualController {
             @ApiResponse(responseCode = "500", description = "Erro no servidor")
     })
     @PostMapping("/inserir")
-    public ResponseEntity<?> inserirTourVirtual(
+    public ResponseEntity<String> inserirTourVirtual(
             @Valid @RequestBody TourVirtual tourVirtual,
             BindingResult resultado) {
 
         if (resultado.hasErrors()) {
             Map<String, String> erros = new HashMap<>();
-
             for (FieldError erro : resultado.getFieldErrors()) {
                 erros.put(erro.getField(), erro.getDefaultMessage());
             }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erros);
+            return ResponseEntity.badRequest().body("Erro na validação: " + erros.toString());
         } else {
-            tourVirtualService.salvarTourVirtual(tourVirtual);
-            return ResponseEntity.ok("Tour virtual inserido com sucesso");
+            try {
+                tourVirtualService.salvarTourVirtual(tourVirtual);
+                return ResponseEntity.ok("Tour virtual inserido com sucesso");
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body("Erro ao inserir tour virtual: " + e.getMessage());
+            }
         }
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElement(NoSuchElementException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tour virtual não encontrado: " + ex.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno: " + ex.getMessage());
     }
 }
