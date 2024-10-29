@@ -1,7 +1,9 @@
 package com.example.viajouapimongo.models;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
@@ -9,8 +11,10 @@ import java.util.List;
 @Document(collection = "tour-virtual")
 public class TourVirtual {
 
-    @Schema(description = "ID do tour virtual", example = "2")
-    private int id;
+    @Id
+    @Field("_id")
+    @Schema(description = "ID único da imagem", example = "671177e7ff3af8c28bed7ea6")
+    private String id;
 
     @Schema(description = "ID da atração associada ao tour", example = "123")
     private int idAtracao;
@@ -33,11 +37,11 @@ public class TourVirtual {
     @Schema(description = "Conteúdo do tour virtual", example = "Conteúdo de imagens e descrições")
     private List<Conteudo> conteudo;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
