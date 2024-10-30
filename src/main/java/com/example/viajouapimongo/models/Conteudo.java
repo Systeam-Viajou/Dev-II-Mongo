@@ -1,6 +1,7 @@
 package com.example.viajouapimongo.models;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Schema(description = "Modelo que representa o conteúdo de um tour virtual")
 public class Conteudo {
@@ -14,6 +15,7 @@ public class Conteudo {
     @Schema(description = "Descrição do conteúdo", example = "Descubra as apresentações culturais únicas através de nosso tour virtual...")
     private String descricao;
 
+    @Field("url_imagem")
     @Schema(description = "URL da imagem associada ao conteúdo", example = "http://example.com/image.jpg")
     private String urlImagem;
 

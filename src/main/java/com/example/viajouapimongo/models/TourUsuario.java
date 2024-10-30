@@ -14,16 +14,16 @@ public class TourUsuario {
     @Schema(description = "ID único da imagem", example = "671177e7ff3af8c28bed7ea6")
     private String id;
 
-    @Schema(description = "ID do usuário", example = "dmg0eT7l7BPD2RkXKIXEM06ihUs1")
     @Field("id_usuario")
+    @Schema(description = "ID do usuário", example = "dmg0eT7l7BPD2RkXKIXEM06ihUs1")
     private String idUsuario;
 
-    @Schema(description = "ID da do tour que o usuário começou", example = "67210522e68fe38d58ca6b96")
     @Field("id_tour")
+    @Schema(description = "ID da do tour que o usuário começou", example = "67210522e68fe38d58ca6b96")
     private String idTour;
 
-    @Schema(description = "Em qual tela do tour virtual que o usuário esta no momento ", example = "2")
     @Field("prosicao_atual")
+    @Schema(description = "Em qual tela do tour virtual que o usuário esta no momento ", example = "2")
     private int prosicaoAtual;
 
     @Schema(description = "Porcentagem de quanto foi o progresso da pessoa nesse tour", example = "50")

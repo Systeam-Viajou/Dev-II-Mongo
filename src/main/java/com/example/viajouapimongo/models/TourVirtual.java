@@ -16,15 +16,15 @@ public class TourVirtual {
     @Schema(description = "ID único da imagem", example = "671177e7ff3af8c28bed7ea6")
     private String id;
 
+    @Field("id_atracao")
     @Schema(description = "ID da atração associada ao tour", example = "123")
     private int idAtracao;
 
-    @Schema(description = "Descrição do tour virtual", example = "Evento cultural com apresentações únicas...")
-    private String descricao;
-
+    @Field("media_classificacao")
     @Schema(description = "Média de classificação do tour", example = "4.5")
     private double mediaClassificacao;
 
+    @Field("id_figurinha")
     @Schema(description = "ID da figurinha associada ao tour", example = "456")
     private int idFigurinha;
 
@@ -51,14 +51,6 @@ public class TourVirtual {
 
     public void setIdAtracao(int idAtracao) {
         this.idAtracao = idAtracao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public double getMediaClassificacao() {
