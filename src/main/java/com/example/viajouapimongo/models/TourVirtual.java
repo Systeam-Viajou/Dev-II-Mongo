@@ -26,7 +26,7 @@ public class TourVirtual {
 
     @Field("id_figurinha")
     @Schema(description = "ID da figurinha associada ao tour", example = "456")
-    private int idFigurinha;
+    private String idFigurinha;
 
     @Schema(description = "Preço do tour virtual", example = "29.99")
     private double preco;
@@ -61,11 +61,11 @@ public class TourVirtual {
         this.mediaClassificacao = mediaClassificacao;
     }
 
-    public int getIdFigurinha() {
+    public String getIdFigurinha() {
         return idFigurinha;
     }
 
-    public void setIdFigurinha(int idFigurinha) {
+    public void setIdFigurinha(String idFigurinha) {
         this.idFigurinha = idFigurinha;
     }
 
