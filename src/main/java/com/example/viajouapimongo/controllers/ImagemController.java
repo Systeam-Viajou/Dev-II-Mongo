@@ -40,7 +40,7 @@ public class ImagemController {
         return ResponseEntity.ok(imagens);
     }
 
-    @Operation(summary = "Buscar imagem por ID da categoria")
+    @Operation(summary = "Buscar imagem por ID da atracao")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Imagem encontrada com sucesso",
                     content = { @Content(mediaType = "application/json",
@@ -48,8 +48,8 @@ public class ImagemController {
             @ApiResponse(responseCode = "404", description = "Imagem não encontrada"),
             @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     })
-    @GetMapping("/{idCategoria}")
-    public ResponseEntity<Imagem> buscarImagemPorIdCategoria(
+    @GetMapping("/{idAtracao}")
+    public ResponseEntity<Imagem> buscarImagemPorIdAtracao(
             @Parameter(description = "ID da categoria de atração") @PathVariable Long idAtracao) {
         return imagemService.getImagemByIdAtracao(idAtracao)
                 .map(ResponseEntity::ok)
