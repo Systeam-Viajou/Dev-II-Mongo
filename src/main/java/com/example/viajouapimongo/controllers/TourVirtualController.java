@@ -1,8 +1,10 @@
 package com.example.viajouapimongo.controllers;
 
+import com.example.viajouapimongo.models.Imagem;
 import com.example.viajouapimongo.models.TourVirtual;
 import com.example.viajouapimongo.services.TourVirtualService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,6 +40,22 @@ public class TourVirtualController {
     public ResponseEntity<List<TourVirtual>> buscarTourVirtual() {
         List<TourVirtual> tours = tourVirtualService.buscarTouresVirtiais();
         return ResponseEntity.ok(tours);
+    }
+
+    @Operation(summary = "Buscar tour virtual por ID do turismo")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Tour virtual encontrado com sucesso",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Imagem.class)) }),
+            @ApiResponse(responseCode = "404", description = "Ponto turistico não encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    })
+    @GetMapping("buscar/{idTurismo}")
+    public ResponseEntity<TourVirtual> buscarImagemPorIdAtracao(
+            @Parameter(description = "ID do turismo") @PathVariable int idTurismo) {
+        return tourVirtualService.buscarTourVirtualPorIdTurismo(idTurismo)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 
     @Operation(summary = "Inserir um novo tour virtual")
