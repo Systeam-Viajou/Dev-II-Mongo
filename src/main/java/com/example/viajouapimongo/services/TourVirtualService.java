@@ -27,7 +27,7 @@ public class TourVirtualService {
 
     // Buscando o tour virtual pelo ID do ponto turistico
     public Optional<TourVirtual> buscarTourVirtualPorIdTurismo(int idTurismo) {
-        return tourVirtualRepository.findByIdPontoTuristico(idTurismo);
+        return tourVirtualRepository.findByIdTurismo(idTurismo);
     }
 
     // Salvando e atualizando o tour virtual
