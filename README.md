@@ -12,7 +12,7 @@ Este repositório contém uma aplicação Java com Spring boot, para criar uma a
 
 ## Funcionalidade
 
-  1. ** Criação de Endpoints RESTful**: Define rotas e métodos HTTP (GET, POST, PUT, DELETE, etc.) para criar uma API RESTful de forma simples e organizada.
+  1. **Criação de Endpoints RESTful**: Define rotas e métodos HTTP (GET, POST, PUT, DELETE, etc.) para criar uma API RESTful de forma simples e organizada.
   2. **Acesso a dados**: Integra com bancos de dados relacionais de forma simplificada
   3. **Swagger**: Gera automaticamente a documentação da API, o que facilita o consumo por outros desenvolvedores.
   4. **Validação de Dados**: Validação de dados de entrada com anotações do Bean Validation (como @NotNull, @Size, etc.), simplificando o código de validação.
